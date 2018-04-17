@@ -12,13 +12,18 @@
 
 int main (int argc, char *argv[])
 {
-	int i = 0;
-	for (i = 0; i < argc; i++)//loops through all arguements passed in
+	int i = 1;
+	if (argc == 1)//condition for now string arguements
 	{
-		printf("\n"); //prints a newline every loop
-		printf(argv[i]);
+		printf("\n");//only prints a newline character
+		return 0;
+	}
+	for (i = 1; i < argc; i++)//loops through all arguements passed in
+	{
+		printf(argv[i]); //prints current string arguement
+		printf(" "); //prints a space between every word
 	
 	}
-	
+	printf("\n"); //prints newline after the echo is done	
 	return 0;
 }
