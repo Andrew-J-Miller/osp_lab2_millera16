@@ -10,11 +10,13 @@ int main(int argc, char  *argv[])
 {
 	FILE *rfile;
 	char c;
-	char output[100];
+	char *line = NULL;
+	size_t n = 0;
+
 	if (argc == 1)//condition for no filename passed in
-	{
-		scanf("%s", output);//Gets output string from user
-		printf(output);//prints output to console
+	{//Uses Getline to get stdin input b/c it can be called with no buffer
+		ssize_t result = getline(&line, &n, stdin);
+		printf(line);//prints output to console
 	}
 	else if (argc == 2)//condition for one filename passed in
 	{
