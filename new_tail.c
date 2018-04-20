@@ -8,7 +8,16 @@
 
 
 
-
+void strAppend(char c, char *string)
+{
+	size_t len = strlen(string);
+	char *str2 = malloc(len + 1 + 1);
+	strcpy(str2, string);
+	str2[len] = c;
+	str2[len+1] = '\0';
+	string = malloc(len + 1 + 1);
+	strcpy(string, str2);
+}
 
 
 int main(int argc, char *argv[])
@@ -53,7 +62,22 @@ int main(int argc, char *argv[])
 	}
 	if (argc == 1 || file == 0) //condition for no file input, get from stdin
 	{
-				
+		char ch;
+		char *str = "";
+	
+		
+
+
+
+
+		while (ch != EOF)
+		{
+			ch = getchar();
+			strAppend(ch, str);			
+		}
+			
+
+		printf("%s", str);
 
 		return 0;
 	}
@@ -62,6 +86,12 @@ int main(int argc, char *argv[])
 		int count = 0;
 		char c;
 		fflush(stdout);
+		if (rf == NULL)
+		{
+			printf("Error. Please Enter a valid filename.\n");
+			return 0;
+		}
+
 		fseek(rf, 0, SEEK_END);
 		if ( fgetc(rf) == '\n')
 		{
