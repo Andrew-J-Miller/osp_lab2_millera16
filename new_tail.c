@@ -7,7 +7,8 @@
 //The number of lines printed can be changed with the -n flag
 
 
-
+//This is a function to append a character to a string
+//This will be used get the user input string
 void strAppend(char c, char **string)
 {
 	size_t len = strlen(*string);
@@ -69,19 +70,22 @@ int main(int argc, char *argv[])
 	
 
 		
-
+		//This is the user input
+		//It will loop until ctrl d is pressed
 		while (ch != EOF)
 		{
 			ch = getchar();
 			if (ch != EOF )
-				strAppend(ch, &str);			
+				strAppend(ch, &str);//appends the character to the string			
 		}
 		
 		size_t len = strlen(str);
 		size_t len2 = len;
 
 	
-
+		//This loop cycles through the string
+		//and finds the correct position to begin ouput so as to print
+		//the las N lines
 		while (counter < lines && len != 0)
 		{
 			if (str[len-1] == '\n')
@@ -90,7 +94,7 @@ int main(int argc, char *argv[])
 			}
 			len--;
 		}
-
+		//Begins printing from the location found prior
 		while (len < len2)
 		{
 			printf("%c", str[len]);
@@ -105,14 +109,14 @@ int main(int argc, char *argv[])
 		int count = 0;
 		char c;
 		fflush(stdout);
-		if (rf == NULL)
+		if (rf == NULL)//Make sure the file opens
 		{
 			printf("Error. Please Enter a valid filename.\n");
 			return 0;
 		}
 
-		fseek(rf, 0, SEEK_END);
-		if ( fgetc(rf) == '\n')
+		fseek(rf, 0, SEEK_END);//Start from the end of the file
+		if ( fgetc(rf) == '\n')//finds the position to beginning printing
 		{
 		count++;
 		}
@@ -126,7 +130,7 @@ int main(int argc, char *argv[])
 		
 		}
 		c = fgetc(rf);
-		while(c != EOF)
+		while(c != EOF)//Prints from the position earlies
 		{
 			printf("%c", c);
 			c = fgetc(rf);
