@@ -8,15 +8,15 @@
 
 
 
-void strAppend(char c, char *string)
+void strAppend(char c, char **string)
 {
-	size_t len = strlen(string);
+	size_t len = strlen(*string);
 	char *str2 = malloc(len + 1 + 1);
-	strcpy(str2, string);
+	strcpy(str2, *string);
 	str2[len] = c;
 	str2[len+1] = '\0';
-	string = malloc(len + 1 + 1);
-	strcpy(string, str2);
+	*string = malloc(len + 1 + 1);
+	strcpy(*string, str2);
 }
 
 
@@ -64,20 +64,39 @@ int main(int argc, char *argv[])
 	{
 		char ch;
 		char *str = "";
+		int counter = 0;
 	
+	
+
 		
-
-
-
 
 		while (ch != EOF)
 		{
 			ch = getchar();
-			strAppend(ch, str);			
+			if (ch != EOF )
+				strAppend(ch, &str);			
 		}
-			
+		
+		size_t len = strlen(str);
+		size_t len2 = len;
 
-		printf("%s", str);
+	
+
+		while (counter < lines && len != 0)
+		{
+			if (str[len-1] == '\n')
+			{
+				counter++;
+			}
+			len--;
+		}
+
+		while (len < len2)
+		{
+			printf("%c", str[len]);
+			len++;
+		}
+		printf("\n");	
 
 		return 0;
 	}
